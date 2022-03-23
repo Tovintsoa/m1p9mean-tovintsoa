@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Tovintsoa/m1p9mean-Tovintsoa/issues"
   },
-  "homepage": "https://github.com/Tovintsoa/m1p9mean-Tovintsoa#readme"
+  "homepage": "https://github.com/Tovintsoa/m1p9mean-Tovintsoa#readme",
+  "dependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
