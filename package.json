@@ -1,0 +1,19 @@
+{
+  "name": "m1p9mean-tovintsoa",
+  "version": "1.0.0",
+  "description": "E-kaly",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tovintsoa/m1p9mean-Tovintsoa.git"
+  },
+  "author": "Tovintsoa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tovintsoa/m1p9mean-Tovintsoa/issues"
+  },
+  "homepage": "https://github.com/Tovintsoa/m1p9mean-Tovintsoa#readme"
+}
