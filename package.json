@@ -2,7 +2,7 @@
   "name": "m1p9mean-tovintsoa",
   "version": "1.0.0",
   "description": "E-kaly",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,5 +18,6 @@
   "homepage": "https://github.com/Tovintsoa/m1p9mean-Tovintsoa#readme",
   "dependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "devDependencies": {}
 }
