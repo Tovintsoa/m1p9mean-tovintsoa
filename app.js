@@ -1,28 +1,30 @@
 const express = require('express');
-const path = require('path');
+const bodyParser = require('body-parser');
 const app = express();
-
-const fs = require('fs');
-const port = process.env.PORT || 3000;
-
-const root = path.join(__dirname, 'front');
-
-app.get('*',(req,res) => {
-    res.sendFile(path.join(__dirname, 'front/src/index.html'))
-});
-app.listen(port, () => {
-    console.log('server started');
-})
-/*const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.end('<h1>Hello World baby </h1>');
-});
-
-server.listen(port,'0.0.0.0',() => {
-    console.log(`Server running at port `+port);
-});*/
+const MongoClient = require("mongodb").MongoClient;
+app.use(bodyParser.urlencoded({extended:true}));
+const connectionString  = 'mongodb+srv://Tovintsoa:M12zle9yskype@cluster0.sdryw.mongodb.net/test?authSource=admin&replicaSet=atlas-ntu9xt-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true';
+var url = require('url');
 
 
+MongoClient.connect(connectionString,{useUnifiedTopology:true}).then(client =>{
+    const db = client.db('ekaly');
+    const quotesCollection = db.collection('users');
 
-console.log('Listening on port '+ port);
+
+    // ========================
+    // Middlewares
+    // ========================
+    app.set('view engine', 'ejs');
+    app.use(bodyParser.json())
+    app.use(express.static('public'));
+    app.listen(3000,function () {
+        console.log('Listen port 3000')
+    });
+    app.get('/',function (req,res) {
+        let list = db.collection('user').find().toArray().then(results => {
+            res.json(results);
+        });
+
+    });
+}).catch(error  => console.log(error));

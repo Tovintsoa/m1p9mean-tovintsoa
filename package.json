@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Tovintsoa/m1p9mean-Tovintsoa#readme",
   "dependencies": {
     "express": "^4.17.3",
+    "mongodb": "^4.4.1",
     "nodemon": "^2.0.15"
   }
 }
