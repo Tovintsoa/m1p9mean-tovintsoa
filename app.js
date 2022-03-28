@@ -20,12 +20,38 @@ MongoClient.connect(connectionString,{useUnifiedTopology:true}).then(client =>{
     app.listen(port,function () {
         console.log('Listen port 3000')
     });
-    app.get('/user',function (req,res) {
-        let list = db.collection('user').find().toArray().then(results => {
+    /**
+     * Gestion des Users
+     */
+    app.get('/restaurant',function (req,res) {
+        let list = db.collection('user').find({"role":"ROLE_RESTAURANT"}).toArray().then(results => {
             res.json(results);
         });
     });
-    
+
+    app.get('/user',function (req,res) {
+        let list = db.collection('user').find({"role":"ROLE_USER"}).toArray().then(results => {
+            res.json(results);
+        });
+    });
+    app.get('/livreur',function (req,res) {
+        let list = db.collection('user').find({"role":"ROLE_LIVREUR"}).toArray().then(results => {
+            res.json(results);
+        });
+    });
+
+
+    /**
+     * Gestion des paniers
+     */
+
+    /**
+     * Gestion des commandes
+     */
+
+    /**
+     * Gestion des livraisons
+     */
 
 
 }).catch(error  => console.log(error));
