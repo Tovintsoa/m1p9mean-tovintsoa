@@ -20,12 +20,12 @@ MongoClient.connect(connectionString,{useUnifiedTopology:true}).then(client =>{
     app.listen(port,function () {
         console.log('Listen port 3000')
     });
-    app.get('/',function (req,res) {
+    app.get('/user',function (req,res) {
         let list = db.collection('user').find().toArray().then(results => {
             res.json(results);
         });
-
     });
+    
 
 
 }).catch(error  => console.log(error));
