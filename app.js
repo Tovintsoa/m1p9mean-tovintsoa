@@ -9,7 +9,7 @@ var url = require('url');
 
 MongoClient.connect(connectionString,{useUnifiedTopology:true}).then(client =>{
     const db = client.db('ekaly');
-    
+
 
     // ========================
     // Middlewares
@@ -26,4 +26,5 @@ MongoClient.connect(connectionString,{useUnifiedTopology:true}).then(client =>{
         });
 
     });
+    
 }).catch(error  => console.log(error));
