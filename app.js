@@ -9,14 +9,12 @@ var url = require('url');
 
 MongoClient.connect(connectionString,{useUnifiedTopology:true}).then(client =>{
     const db = client.db('ekaly');
-    const quotesCollection = db.collection('users');
-
 
     // ========================
     // Middlewares
     // ========================
     app.set('view engine', 'ejs');
-    app.use(bodyParser.json())
+    app.use(bodyParser.json());
     app.use(express.static('public'));
     app.listen(3000,function () {
         console.log('Listen port 3000')
