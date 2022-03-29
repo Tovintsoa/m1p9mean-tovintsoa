@@ -37,8 +37,9 @@ MongoClient.connect(connectionString,{useUnifiedTopology:true}).then(client =>{
         console.log(req.params['userId']);
 
         var o_id = new ObjectId(req.params['userId']);
-        let list = db.collection('user').find({"_id":o_id}).toArray().then(results =>{
-            res.json(results);
+        let list = db.collection('user').findOne({"_id":o_id}).then(results =>{
+            /*res.json(results['plat']);*/
+            res.json(results.plat);
         })
     });
     app.get('/user',function (req,res) {
