@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const MongoClient = require("mongodb").MongoClient;
+const ObjectId = require('mongodb').ObjectId;
 app.use(bodyParser.urlencoded({extended:true}));
 const connectionString  = 'mongodb+srv://Tovintsoa:M12zle9yskype@cluster0.sdryw.mongodb.net/test?authSource=admin&replicaSet=atlas-ntu9xt-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true';
 var url = require('url');
@@ -25,14 +26,21 @@ MongoClient.connect(connectionString,{useUnifiedTopology:true}).then(client =>{
         res.sendFile('/front/index.html');
     });
     /**
-     * Gestion des Users
+     * Gestion des restaurant
      */
     app.get('/restaurant',function (req,res) {
         let list = db.collection('user').find({"role":"ROLE_RESTAURANT"}).toArray().then(results => {
             res.json(results);
         });
     });
+    app.get("/plat/:userId",function(req,res){
+        console.log(req.params['userId']);
 
+        var o_id = new ObjectId(req.params['userId']);
+        let list = db.collection('user').find({"_id":o_id}).toArray().then(results =>{
+            res.json(results);
+        })
+    });
     app.get('/user',function (req,res) {
         let list = db.collection('user').find({"role":"ROLE_USER"}).toArray().then(results => {
             res.json(results);
