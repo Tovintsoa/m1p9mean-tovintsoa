@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const MongoClient = require("mongodb").MongoClient;
 const ObjectId = require('mongodb').ObjectId;
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(cors())
 const connectionString  = 'mongodb+srv://Tovintsoa:M12zle9yskype@cluster0.sdryw.mongodb.net/test?authSource=admin&replicaSet=atlas-ntu9xt-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true';
 var url = require('url');
 const port = process.env.PORT || 3000;
