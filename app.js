@@ -46,7 +46,7 @@ MongoClient.connect(connectionString,{useUnifiedTopology:true}).then(client =>{
     });
     app.get('/restaurant/:id',function (req,res) {
         var o_id = new ObjectId(req.params['id']);
-        let list = db.collection('user').find({"role":"ROLE_RESTAURANT",'_id':o_id}).toArray().then(results => {
+        let list = db.collection('user').findOne({"role":"ROLE_RESTAURANT",'_id':o_id}).then(results => {
             res.json(results);
         });
     });
