@@ -44,6 +44,15 @@ MongoClient.connect(connectionString,{useUnifiedTopology:true}).then(client =>{
             res.json(results.plat);
         })
     });
+    app.get('/restaurant/:id',function (req,res) {
+        var o_id = new ObjectId(req.params['id']);
+        let list = db.collection('user').find({"role":"ROLE_RESTAURANT",'_id':o_id}).toArray().then(results => {
+            res.json(results);
+        });
+    });
+
+
+
     app.get('/user',function (req,res) {
         let list = db.collection('user').find({"role":"ROLE_USER"}).toArray().then(results => {
             res.json(results);
@@ -54,6 +63,7 @@ MongoClient.connect(connectionString,{useUnifiedTopology:true}).then(client =>{
             res.json(results);
         });
     });
+
 
 
     /**
