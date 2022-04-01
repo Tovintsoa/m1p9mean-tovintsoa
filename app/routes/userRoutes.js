@@ -17,12 +17,10 @@ app.get("/plat/:userId", async function(req,res){
     res.json(list.plat);
 });
 app.post("/userAdd", async (request, response) => {
-    const food = new userModel(request.body);
-
+    const client = new userModel(request.body);
     try {
-        console.log('ok')
-        await food.save();
-        response.send(food);
+        await client.save();
+        response.send(client);
     } catch (error) {
         response.status(500).send(error);
     }
