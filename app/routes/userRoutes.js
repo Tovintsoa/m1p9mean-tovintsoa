@@ -1,8 +1,10 @@
 const express = require("express");
 const userModel = require("../models/user");
 const app = express();
-const ObjectId = require('mongodb').ObjectId;
 let mongoose = require('mongoose');
+const cors = require('cors');
+
+app.use(cors())
 
 app.get("/restaurant", async (request, response) => {
     const user = await userModel.find({"role":"ROLE_RESTAURANT"});
