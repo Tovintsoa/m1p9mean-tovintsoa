@@ -4,7 +4,7 @@ const app = express();
 let mongoose = require('mongoose');
 const cors = require('cors');
 
-app.use(cors())
+app.use(cors());
 
 app.get("/restaurant", async (request, response) => {
     const user = await userModel.find({"role":"ROLE_RESTAURANT"});
@@ -17,6 +17,7 @@ app.get("/plat/:userId", async function(req,res){
     res.json(list.plat);
 });
 app.post("/userAdd", async (request, response) => {
+    console.log(request.body);
     const client = new userModel(request.body);
     try {
         await client.save();
