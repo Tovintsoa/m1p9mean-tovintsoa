@@ -19,6 +19,9 @@ const UserSchema = new mongoose.Schema({
     url_image:{
         type:String
     },
+    motdepasse:{
+        type:String
+    },
     plat:{
         type:Array
     }
