@@ -14,7 +14,7 @@ app.get("/plat/:userId", async function(req,res){
 
     var o_id = mongoose.Types.ObjectId(req.params['userId']);
     const list = await userModel.findOne({"_id":o_id});
-    res.json(list.plat);
+    res.json(list);
 });
 app.post("/userAdd", async (request, response) => {
     console.log(request.body);
