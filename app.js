@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const userRouter = require('./app/routes/userRoutes');
 const db = require('./app/config/db.config');
 const app = express();
-
+const authRoute = require('./app/routes/authRoute')
 app.use(express.json());
 
 mongoose.connect(db.url,{
@@ -19,6 +19,7 @@ mongoose.connect(db.url,{
     });
 
 app.use(userRouter);
+app.use(authRoute);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
