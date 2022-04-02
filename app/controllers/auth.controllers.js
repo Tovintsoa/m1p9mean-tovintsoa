@@ -2,7 +2,6 @@ const config = require("../config/auth.config");
 const userModel = require("../models/user");
 
 var jwt = require("jsonwebtoken");
-var bcrypt = require("bcryptjs");
 
 exports.signin = (req, res) => {
 
