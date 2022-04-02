@@ -23,7 +23,7 @@ app.get("/plat/:userId", async function(req,res){
    res.json(list.plat);
    // res.json(list);
 });
-app.post("/userAdd", async (request, response) => {
+app.post("/auth/userAdd", async (request, response) => {
     console.log(request.body);
     const client = new userModel(request.body);
     try {
