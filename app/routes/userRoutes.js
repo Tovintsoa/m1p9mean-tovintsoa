@@ -10,7 +10,7 @@ app.get("/restaurant", async (request, response) => {
     const user = await userModel.find({"role":"ROLE_RESTAURANT"});
     response.json(user);
 });
-app.get("/plat/:userId", async function(req,res){
+app.get("/restaurant/:userId", async function(req,res){
 
     var o_id = mongoose.Types.ObjectId(req.params['userId']);
     const list = await userModel.findOne({"_id":o_id});
