@@ -19,7 +19,7 @@ mongoose.connect(db.url,{
     });
 
 app.use(userRouter);
-app.use(authRoute);
+
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
