@@ -14,7 +14,7 @@ exports.signin = (req, res) => {
             return;
         }
         if (!user) {
-            return res.status(404).send({ message: "User Not found." });
+            return res.status(404).send({ message: "Cet email n'est associé à aucun utilisateur" });
         }
 
         if(req.body.password === user.motdepasse){
@@ -35,7 +35,7 @@ exports.signin = (req, res) => {
         else{
             return res.status(401).send({
                 accessToken: null,
-                message: "Invalid Password!"
+                message: "Vérifier le mot de passe ou l'adresse email"
             });
         }
 

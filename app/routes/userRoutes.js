@@ -1,6 +1,7 @@
 const express = require("express");
 const userModel = require("../models/user");
-const {body,validationResult} = require('express-validator');
+const {validationResult} = require('express-validator');
+const { validateEmail } = require('../middlewares/validator');
 const app = express();
 let mongoose = require('mongoose');
 const cors = require('cors');
@@ -25,16 +26,22 @@ app.get("/plat/:userId", async function(req,res){
    // res.json(list);
 });
 
-app.post("/auth/userAdd",body('username').isEmail(), async (request, response) => {
+app.post("/auth/userAdd",  [validateEmail], async (request, response) => {
     const errors = validationResult(request);
-    console.log(errors);
+    if (!errors.isEmpty()) {
+        //response.send(errors)
+        response.status(400).send(errors)
 
-    const client = new userModel(request.body);
-    try {
-        await client.save();
-        response.send(client);
-    } catch (error) {
-        response.status(500).send(error);
+    }
+    else {
+
+        const client = new userModel(request.body);
+        try {
+            await client.save();
+            response.send(client);
+        } catch (error) {
+            response.status(500).send(error);
+        }
     }
 });
 
