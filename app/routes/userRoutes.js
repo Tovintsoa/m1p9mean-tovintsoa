@@ -1,5 +1,6 @@
 const express = require("express");
 const userModel = require("../models/user");
+const {body,validationResult} = require('express-validator');
 const app = express();
 let mongoose = require('mongoose');
 const cors = require('cors');
@@ -23,8 +24,11 @@ app.get("/plat/:userId", async function(req,res){
    res.json(list.plat);
    // res.json(list);
 });
-app.post("/auth/userAdd", async (request, response) => {
-    console.log(request.body);
+
+app.post("/auth/userAdd",body('username').isEmail(), async (request, response) => {
+    const errors = validationResult(request);
+    console.log(errors);
+
     const client = new userModel(request.body);
     try {
         await client.save();
