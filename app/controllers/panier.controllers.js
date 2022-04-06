@@ -24,3 +24,12 @@ exports.ajouterPanier = async(req,res) =>{
         res.status(500).send(error);
     }
 };
+exports.effacerPanier = async(req,res) => {
+    const panier = req.params['idPanier'];
+    try{
+        await panierModel.delete(panier);
+    }
+    catch(error){
+        res.status(500).send(error);
+    }
+};
