@@ -14,3 +14,13 @@ exports.countPanier = async(req,res) =>{
     }); console.log(nombre);
    await res.json(nombre)
 };
+exports.ajouterPanier = async(req,res) =>{
+
+    const panier = new panierModel(req.body);
+    try {
+        await panier.save();
+        res.send(panier);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
