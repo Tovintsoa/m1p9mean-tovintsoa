@@ -62,3 +62,7 @@ exports.changeQuantite = async(req,res) => {
 
     }
 };
+exports.validerPanier = async (req,res) => {
+console.log('aaa');
+
+};
