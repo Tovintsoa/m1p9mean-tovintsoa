@@ -26,10 +26,39 @@ exports.ajouterPanier = async(req,res) =>{
 };
 exports.effacerPanier = async(req,res) => {
     const panier = req.params['idPanier'];
+
     try{
-        await panierModel.delete(panier);
+        await panierModel.deleteOne( {_id: panier} );
+        let panierJson = await panierModel.find({
+            utilisateur:req.params['userId']
+        });
+
+        await res.json(panierJson);
+
     }
     catch(error){
         res.status(500).send(error);
+        console.log(error);
+    }
+};
+exports.changeQuantite = async(req,res) => {
+
+    var p_id = mongoose.Types.ObjectId(req.params['idPanier']);
+
+    const qte = req.params['qte'];
+    const filter = {"_id":p_id};
+    const update = { quantite: qte };
+
+    try{
+        await panierModel.findOneAndUpdate(filter, update,{
+            new:true
+        });
+        let panier = await panierModel.find({
+            utilisateur:req.params['userId']
+        });
+        await res.json(panier);
+    }
+    catch(error){
+
     }
 };
