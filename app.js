@@ -5,6 +5,7 @@ const db = require('./app/config/db.config');
 const app = express();
 const authRoute = require('./app/routes/authRoute');
 const panieRoute = require('./app/routes/panierRoute');
+const commandeRoute = require('./app/routes/commandeRoute');
 app.use(express.json());
 
 mongoose.connect(db.url,{
@@ -22,6 +23,7 @@ mongoose.connect(db.url,{
 app.use(userRouter);
 app.use(authRoute);
 app.use(panieRoute);
+app.use(commandeRoute);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

@@ -1,5 +1,6 @@
 const config = require("../config/auth.config");
 const panierModel = require("../models/panier");
+const commandeModel = require('../models/commande');
 let mongoose = require('mongoose');
 exports.getPanier = async(req,res) =>{
     let panier = await panierModel.find({
@@ -63,6 +64,25 @@ exports.changeQuantite = async(req,res) => {
     }
 };
 exports.validerPanier = async (req,res) => {
-console.log('aaa');
+    //console.log(req.body);
+    for (const data of req.body) {
+        const panierAncien = new panierModel(data);
+        const commande = new commandeModel(data);
+        commande.status = 'commande_send';
+        commande.dateCommande = new Date();
+        console.log(commande.dateCommande);
+      try{
+        await commande.save();
+        await panierAncien.delete();
+      }
+      catch(error){
+          res.status(500).send(error);
+      }
 
+    }
+    let panier = await panierModel.find({
+        utilisateur:req.params['userId']
+    });
+    console.log(panier);
+    await res.json(panier);
 };
